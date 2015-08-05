@@ -45,7 +45,9 @@ var Twig = (function (Twig) {
             return new Twig.Template({
                 data: params.data,
                 module: params.module,
-                id:   id,
+                url: params.url,
+                base: params.base,
+                id: id,
                 options: options
             });
 
