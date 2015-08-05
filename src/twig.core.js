@@ -979,12 +979,10 @@ var Twig = (function (Twig) {
         var url, sub_template;
         if ( !this.url && !this.path && this.options.allowInlineIncludes ) {
             sub_template = Twig.Templates.load(file);
-            sub_template.options = this.options;
             if ( sub_template ) {
+                sub_template.options = this.options;
                 return sub_template;
             }
-
-            throw new Twig.Error("Didn't find the inline template by id");
         }
 
         url = relativePath(this, file);
@@ -997,6 +995,10 @@ var Twig = (function (Twig) {
             options: this.options,
             id: url
         });
+
+        if (!sub_template) {
+            throw new Twig.Error("Didn't find the inline template by id");
+        }
 
         return sub_template;
     };
